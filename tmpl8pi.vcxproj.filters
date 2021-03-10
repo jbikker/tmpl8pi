@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{6380913e-b309-4e6a-b5d5-b8e144c2d9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template">
+      <UniqueIdentifier>{33bea4a6-3f9a-4e27-adea-5b6e51fa1043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders">
+      <UniqueIdentifier>{64a104ef-1425-4b0a-9e6f-15bb8e24f0e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="template\template.cpp">
+      <Filter>template</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="template\template.h">
+      <Filter>template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\stb_image.h">
+      <Filter>template</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\font.png">
+      <Filter>assets</Filter>
+    </Image>
+    <Image Include="assets\spec.jpg">
+      <Filter>assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\compute.comp">
+      <Filter>assets\shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
