@@ -68,7 +68,6 @@
     <LibraryPath>/usr/lib;/usr/lib/arm-linux-gnueabihf;$(LibraryPath)</LibraryPath>
     <MultiProcNumber>4</MultiProcNumber>
     <SourcePath>.;$(SourcePath)</SourcePath>
-    <RemotePostBuildEventUseInBuild>false</RemotePostBuildEventUseInBuild>
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <ValidateArchitecture>false</ValidateArchitecture>
   </PropertyGroup>
@@ -123,8 +122,10 @@
       <DebuggerSymbolInformation>OmitAllSymbolInformation</DebuggerSymbolInformation>
     </Link>
     <RemotePostBuildEvent>
-      <Command>gpio export 17 out</Command>
-      <Message>export pin 17 using the gpio utility so that we can execute the blink program without sudo</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </RemotePostBuildEvent>
     <ClCompile>
       <CppLanguageStandard>c++17</CppLanguageStandard>
@@ -147,8 +148,10 @@
       <AdditionalOptions>-pg %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <RemotePostBuildEvent>
-      <Command>gpio export 17 out</Command>
-      <Message>export pin 17 using the gpio utility so that we can execute the blink program without sudo</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </RemotePostBuildEvent>
     <ClCompile>
       <CppLanguageStandard>c++17</CppLanguageStandard>
@@ -171,16 +174,29 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='RelProf|ARM'">-mfpu=neon %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">-mfpu=neon %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="template\opengl.cpp" />
+    <ClCompile Include="template\sprite.cpp" />
+    <ClCompile Include="template\surface.cpp" />
     <ClCompile Include="template\template.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">-mfpu=neon %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='RelProf|ARM'">-mfpu=neon %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">-mfpu=neon %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="template\opengl.h" />
+    <ClInclude Include="template\sprite.h" />
     <ClInclude Include="template\stb_image.h" />
-    <ClInclude Include="template\template.h" />
+    <ClInclude Include="template\surface.h" />
+    <ClCompile Include="template\template.h">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">-x %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">CompileAsCpp</CompileAs>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">template\template.gch</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">template\template.gch</ObjectFileName>
+    </ClCompile>
+    <ClInclude Include="template\tmpl8math.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\font.png" />
@@ -223,6 +239,8 @@
     <Link>
       <DebuggerSymbolInformation>OmitAllSymbolInformation</DebuggerSymbolInformation>
       <LibraryDependencies>EGL;GLESv2;pthread;X11;Xrandr</LibraryDependencies>
+      <IgnoreDefaultLibraries>false</IgnoreDefaultLibraries>
+      <AdditionalDependencies />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
