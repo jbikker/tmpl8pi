@@ -569,7 +569,7 @@ public:
 	}
 	bool operator==( const mat4& m )
 	{
-		for (int i = 0; i < 16; i++) if (m.cell[i] != cell[i]) return false; 
+		for (int i = 0; i < 16; i++) if (m.cell[i] != cell[i]) return false;
 		return true;
 	}
 	float3 GetTranslation() const { return make_float3( cell[3], cell[7], cell[11] ); }

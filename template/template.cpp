@@ -1,3 +1,7 @@
+// Template, IGAD version 3, Raspberry PI 4 version
+// Get the latest version from: https://github.com/jbikker/tmpl8pi
+// IGAD/NHTV/BUAS/UU - Jacco Bikker - 2006-2023
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "template.h"
 
@@ -183,7 +187,7 @@ void InitEGL()
 	// create surface to display graphics on
 	eglSurface = eglCreateWindowSurface( eglDisplay, eglConfig, (EGLNativeWindowType)x11Window, NULL );
 	// create EGL rendering context
-	static const EGLint GLES3_ATTRIBUTE_LIST[] = 
+	static const EGLint GLES3_ATTRIBUTE_LIST[] =
 	{
 		EGL_CONTEXT_MAJOR_VERSION_KHR, 3,
 		EGL_CONTEXT_MINOR_VERSION_KHR, 1,

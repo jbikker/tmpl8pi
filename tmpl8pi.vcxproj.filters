@@ -34,9 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="template\stb_image.h">
-      <Filter>template</Filter>
-    </ClInclude>
     <ClInclude Include="template\surface.h">
       <Filter>template</Filter>
     </ClInclude>

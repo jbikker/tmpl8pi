@@ -1,0 +1,51 @@
+ WARNING - SETTING UP THE PI4 IS FINICKY. FOLLOW THE INSTRUCTIONS
+and postpone any clever changes to a later stage, i.e. UNTIL AFTER
+ YOU GOT THE BASICS WORKING. *Pain is the inevitable alternative.*
+
+!! These instructions are for the pi4 and pi400. These are equivalent.
+!! It doesn't matter how much memory your pi4 has.
+
+For a new SD card:
+
+1. Get Raspberry Pi OS manager for windows: https://www.raspberrypi.org/software
+2. Use it to put the default 64-bit recommended Raspberry OS on a micro sd card.
+   Make sure you reset any custom settings back to default.
+3. First boot:
+   - Put the sd card in your pi4 or pi400.
+   - Connect a mouse, a keyboard and a monitor.
+   - Connect power last. This boots the pi4. There is no power switch sadly.
+   - Connect it to wifi, and if it wants, let it update.
+4. Click the Raspberry icon in the top-left of the screen, 
+   go to 'Preferences', then to 'Raspberry Pi Configuration', 'Interfaces', 
+   and enable 'SSH' and 'VNC' if they are not set already.
+   Under 'Performance', set GPU mem to 128.
+5. Go into the console (black icon at the top of the screen) and type:
+   sudo apt-get install libgles2-mesa-dev
+   sudo apt-get install libxrandr-dev
+   sudo apt-get install g++ gdb make ninja-build rsync zip
+   sudo apt-get update
+   sudo apt full-upgrade
+   This installs the software and libraries you need for this block.
+6. Turn off the screensaver via:
+   sudo raspi-config
+7. Optionally, a pi400 can be overclocked. OBVIOUSLY THIS IS RISKY!!
+   Info via https://www.raspberrypi.org/forums/viewtopic.php?f=68&t=304534:
+   sudo nano /boot/config.txt, change:
+   dtoverlay=vc4-fkms-v3d to dtoverlay=vc4-kms-v3d or vc4-kms-v3d-pi4
+   replace #arm_freq=800 by:
+   force_turbo=1
+   over_voltage=8
+   arm_freq=2200
+8. Optionally, flash an updated kernel. DO THIS ONLY ONCE, i.e. NOT WEEKLY: 
+   sudo rpi-update, for a flash update.
+9. Connecting Visual Studio to the pi400:
+   - Goto Tools->Options->Cross Platform->Connection Manager
+   - Verify in Configuration Properties->Debugging; set ip to default.
+ 
+Profiling:
+
+See https://www.softwarecoven.com/software-profiling-tools-for-raspberry-pi .
+1. use gprof: compile and link with -pg, and temporarily disable 'Omit Frame Pointer'
+2. ./piwrld.out –mode=execute gprof ./pw
+3. gprof -b -p ./piwrld.out
+   gprof -b -p -l ./piwrld.out
